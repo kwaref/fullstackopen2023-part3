@@ -1,0 +1,27 @@
+{
+  "name": "fullstackopen2023-part3",
+  "version": "1.0.0",
+  "description": "Exercises of part 3 of the course",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kwaref/fullstackopen2023-part3.git"
+  },
+  "author": "Karel Rodríguez Varona",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "bugs": {
+    "url": "https://github.com/kwaref/fullstackopen2023-part3/issues"
+  },
+  "homepage": "https://github.com/kwaref/fullstackopen2023-part3#readme"
+}
