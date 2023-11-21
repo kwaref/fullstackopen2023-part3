@@ -5,18 +5,15 @@ const Person = require('./models/person')
 
 const app = express()
 
-app.use(express.static('dist'))
-
 morgan.token('postReceivedData', req => {
     return req.method === 'POST' ? JSON.stringify(req.body) : ''
 })
 
+app.use(express.static('dist'))
 app.use(express.json())
-
 app.use(morgan('tiny', {
     skip: req => req.method === 'POST'
 }))
-
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :postReceivedData', {
     skip: req => req.method !== 'POST'
 }))
@@ -66,10 +63,11 @@ app.get('/api/persons/:id', (request, response) => {
 })
 
 app.delete('/api/persons/:id', (request, response) => {
-    const id = Number(request.params.id)
-    persons = persons.filter(person => person.id !== id)
-
-    response.status(204).end()
+    Person.findByIdAndDelete(request.params.id)
+    .then(result => {
+        response.status(204).end()
+    })
+    .catch(error => next(error))
 })
 
 app.post('/api/persons', (request, response) => {
