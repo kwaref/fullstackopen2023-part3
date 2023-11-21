@@ -66,9 +66,9 @@ app.get('/api/persons/:id', (request, response, next) => {
 })
 
 app.delete('/api/persons/:id', (request, response) => {
-  Person.findByIdAndDelete(request.params.id)
+    Person.findByIdAndDelete(request.params.id)
     .then(result => {
-      response.status(204).end()
+        response.status(204).end()
     })
     .catch(error => next(error))
 })
@@ -89,27 +89,27 @@ app.put('/api/persons/:id', (request, response, next) => {
 })
 
 app.post('/api/persons', (request, response) => {
-  const body = request.body
-  const { name, number } = body
-  if (!name) {
-    return response.status(400).json({
-      error: 'name is missing',
-    })
-  }
-  if (!number) {
-    return response.status(400).json({
-      error: 'number is missing',
-    })
-  }
+    const body = request.body
+    const { name, number } = body
+    if (!name) {
+        return response.status(400).json({
+            error: 'name is missing',
+        })
+    }
+    if (!number) {
+        return response.status(400).json({
+            error: 'number is missing',
+        })
+    }
 
-  const person = new Person({
-    name,
-    number,
-  })
+    const person = new Person({
+        name,
+        number,
+    })
 
-  person.save().then(savedPerson => {
-    response.json(savedPerson)
-  })
+    person.save().then(savedPerson => {
+        response.json(savedPerson)
+    })
 })
 
 app.use(unknownEndpoint)
@@ -117,5 +117,5 @@ app.use(errorHandler)
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+    console.log(`Server running on port ${PORT}`)
 })
